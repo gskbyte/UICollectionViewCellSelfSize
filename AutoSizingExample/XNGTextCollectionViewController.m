@@ -26,7 +26,9 @@ const static NSUInteger XNGNumTextCells = 10000;
     [self.collectionView registerClass:XNGTextCell.class
             forCellWithReuseIdentifier:NSStringFromClass(XNGTextCell.class)];
     UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout*) self.collectionView.collectionViewLayout;
-    flow.estimatedItemSize = CGSizeMake(100, 50); // if collectionView:layout:sizeForItemAtIndexPath is implemented, does not do anything
+    if([flow respondsToSelector:@selector(setEstimatedItemSize:)]) {
+        flow.estimatedItemSize = CGSizeMake(100, 50); // if collectionView:layout:sizeForItemAtIndexPath is implemented, does not do anything
+    }
     flow.minimumInteritemSpacing = 2;
     flow.minimumLineSpacing = 2;
 
@@ -123,7 +125,8 @@ const static NSUInteger XNGNumTextCells = 10000;
         cell = [[XNGTextCell alloc] initWithFrame:CGRectZero];
     });
     cell.textLabel.text = text;
-    CGSize size = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    [cell layoutSubviews];
+    CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size;
 }
 
