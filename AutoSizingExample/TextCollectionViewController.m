@@ -1,18 +1,10 @@
-//
-//  ViewController.m
-//  AutoSizingExample
-//
-//  Created by Jose Alcalá-Correa on 14/10/14.
-//  Copyright (c) 2014 gskbyte. All rights reserved.
-//
+#import "TextCollectionViewController.h"
 
-#import "ViewController.h"
-
-@interface ViewController ()
+@interface TextCell : UICollectionViewCell
 
 @end
 
-@implementation ViewController
+@implementation TextCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

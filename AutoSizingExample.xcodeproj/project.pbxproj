@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		C04AFD6719ED243600F7979F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD6619ED243600F7979F /* main.m */; };
 		C04AFD6A19ED243600F7979F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD6919ED243600F7979F /* AppDelegate.m */; };
-		C04AFD6D19ED243600F7979F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD6C19ED243600F7979F /* ViewController.m */; };
+		C04AFD6D19ED243600F7979F /* TextCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD6C19ED243600F7979F /* TextCollectionViewController.m */; };
 		C04AFD7019ED243600F7979F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04AFD6E19ED243600F7979F /* Main.storyboard */; };
 		C04AFD7219ED243600F7979F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04AFD7119ED243600F7979F /* Images.xcassets */; };
 		C04AFD7519ED243600F7979F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C04AFD7319ED243600F7979F /* LaunchScreen.xib */; };
 		C04AFD8119ED243600F7979F /* AutoSizingExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD8019ED243600F7979F /* AutoSizingExampleTests.m */; };
+		C04AFD8C19ED24B500F7979F /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD8B19ED24B500F7979F /* SelectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +33,16 @@
 		C04AFD6619ED243600F7979F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C04AFD6819ED243600F7979F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C04AFD6919ED243600F7979F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C04AFD6B19ED243600F7979F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C04AFD6C19ED243600F7979F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C04AFD6B19ED243600F7979F /* TextCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCollectionViewController.h; sourceTree = "<group>"; };
+		C04AFD6C19ED243600F7979F /* TextCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCollectionViewController.m; sourceTree = "<group>"; };
 		C04AFD6F19ED243600F7979F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C04AFD7119ED243600F7979F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C04AFD7419ED243600F7979F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C04AFD7A19ED243600F7979F /* AutoSizingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoSizingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04AFD7F19ED243600F7979F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C04AFD8019ED243600F7979F /* AutoSizingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoSizingExampleTests.m; sourceTree = "<group>"; };
+		C04AFD8A19ED24B500F7979F /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionViewController.h; sourceTree = "<group>"; };
+		C04AFD8B19ED24B500F7979F /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +86,14 @@
 			children = (
 				C04AFD6819ED243600F7979F /* AppDelegate.h */,
 				C04AFD6919ED243600F7979F /* AppDelegate.m */,
-				C04AFD6B19ED243600F7979F /* ViewController.h */,
-				C04AFD6C19ED243600F7979F /* ViewController.m */,
 				C04AFD6E19ED243600F7979F /* Main.storyboard */,
 				C04AFD7119ED243600F7979F /* Images.xcassets */,
 				C04AFD7319ED243600F7979F /* LaunchScreen.xib */,
 				C04AFD6419ED243600F7979F /* Supporting Files */,
+				C04AFD8A19ED24B500F7979F /* SelectionViewController.h */,
+				C04AFD8B19ED24B500F7979F /* SelectionViewController.m */,
+				C04AFD6B19ED243600F7979F /* TextCollectionViewController.h */,
+				C04AFD6C19ED243600F7979F /* TextCollectionViewController.m */,
 			);
 			path = AutoSizingExample;
 			sourceTree = "<group>";
@@ -219,7 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C04AFD6D19ED243600F7979F /* ViewController.m in Sources */,
+				C04AFD6D19ED243600F7979F /* TextCollectionViewController.m in Sources */,
+				C04AFD8C19ED24B500F7979F /* SelectionViewController.m in Sources */,
 				C04AFD6A19ED243600F7979F /* AppDelegate.m in Sources */,
 				C04AFD6719ED243600F7979F /* main.m in Sources */,
 			);
