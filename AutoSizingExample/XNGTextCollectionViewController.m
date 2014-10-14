@@ -3,6 +3,8 @@
 #import "XNGChiquitoIpsum.h"
 #import <Masonry/Masonry.h>
 
+#import <objc/runtime.h>
+
 const static NSUInteger XNGNumTextCells = 10000;
 
 @interface XNGTextCell : UICollectionViewCell
@@ -53,15 +55,21 @@ const static NSUInteger XNGNumTextCells = 10000;
     return cell;
 }
 
-// we can't implement this method if we want to use autosizing
-// just comment it out to use it
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *text = self.texts[indexPath.row];
+    return [XNGTextCell sizeForText:text];
+}
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView
-//                  layout:(UICollectionViewLayout *)collectionViewLayout
-//  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *text = self.texts[indexPath.row];
-//    return [XNGTextCell sizeForText:text];
-//}
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if([UIDevice.currentDevice.systemVersion hasPrefix:@"8"] &&
+       aSelector == @selector(collectionView:layout:sizeForItemAtIndexPath:)) {
+        return NO;
+    }
+
+    return [super respondsToSelector:aSelector];
+}
 
 
 @end
