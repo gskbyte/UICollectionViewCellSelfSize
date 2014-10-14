@@ -1,5 +1,5 @@
 //
-//  SelectionViewController.h
+//  ViewController.h
 //  AutoSizingExample
 //
 //  Created by Jose Alcalá-Correa on 14/10/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectionViewController : UITableViewController
+@interface XNGTextCollectionViewController : UICollectionViewController
+
 
 @end
+

@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 gskbyte. All rights reserved.
 //
 
-#import "SelectionViewController.h"
+#import "XNGSelectionViewController.h"
 
-@interface SelectionViewController ()
+@interface XNGSelectionViewController ()
 
 @end
 
-@implementation SelectionViewController
+@implementation XNGSelectionViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

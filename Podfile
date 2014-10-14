@@ -1,8 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-workspace 'CollectionViewTest'
-xcodeproj 'CollectionViewTest'
+workspace 'AutoSizingExample'
+xcodeproj 'AutoSizingExample'
 
-target "CollectionViewTest" do
+target "AutoSizingExample" do
   pod "Masonry"
 end
