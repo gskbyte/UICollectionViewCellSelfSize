@@ -1,3 +1,11 @@
+//
+//  XNGTextImageCollectionViewController.h
+//  AutoSizingExample
+//
+//  Created by Jose Alcalá-Correa on 16/10/14.
+//  Copyright (c) 2014 gskbyte. All rights reserved.
+//
+
 #import "XNGTextCollectionViewController.h"
 
 #import "XNGChiquitoIpsum.h"
@@ -17,6 +25,7 @@ const static NSUInteger XNGNumTextCells = 10000;
 
 @interface XNGTextCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic) BOOL useAutoSizingCells;
 @property (nonatomic) NSMutableArray * texts;
 
 @end
@@ -28,11 +37,10 @@ const static NSUInteger XNGNumTextCells = 10000;
     [self.collectionView registerClass:XNGTextCell.class
             forCellWithReuseIdentifier:NSStringFromClass(XNGTextCell.class)];
     UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout*) self.collectionView.collectionViewLayout;
-    if([flow respondsToSelector:@selector(setEstimatedItemSize:)]) {
-        flow.estimatedItemSize = CGSizeMake(100, 50); // if collectionView:layout:sizeForItemAtIndexPath is implemented, does not do anything
+    self.useAutoSizingCells = [flow respondsToSelector:@selector(setEstimatedItemSize:)];
+    if(self.useAutoSizingCells) {
+        flow.estimatedItemSize = CGSizeMake(200, 50); // if collectionView:layout:sizeForItemAtIndexPath is implemented, does not do anything
     }
-    flow.minimumInteritemSpacing = 2;
-    flow.minimumLineSpacing = 2;
 
     self.texts = [NSMutableArray arrayWithCapacity:XNGNumTextCells];
     for(NSUInteger i=0; i<XNGNumTextCells; ++i) {
@@ -62,15 +70,18 @@ const static NSUInteger XNGNumTextCells = 10000;
     return [XNGTextCell sizeForText:text];
 }
 
+// Why do we do this:
+// If collectionView:layout:sizeForItemAtIndexPath is implemented, it will be called at the beginning
+// and we will lose the advantage of using autosizing cells
+
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    if([UIDevice.currentDevice.systemVersion hasPrefix:@"8"] &&
+    if(self.useAutoSizingCells &&
        aSelector == @selector(collectionView:layout:sizeForItemAtIndexPath:)) {
         return NO;
     }
 
     return [super respondsToSelector:aSelector];
 }
-
 
 @end
 
@@ -88,7 +99,7 @@ const static NSUInteger XNGNumTextCells = 10000;
             make.left.equalTo(@0);
             make.top.equalTo(@0);
             make.width.greaterThanOrEqualTo(@50);
-            make.width.lessThanOrEqualTo(@120);
+            make.width.lessThanOrEqualTo(@310);
         }];
         self.contentView.backgroundColor = [UIColor yellowColor];
 
@@ -106,7 +117,25 @@ const static NSUInteger XNGNumTextCells = 10000;
     return self;
 }
 
++ (CGSize)sizeForText:(NSString*)text {
+    static XNGTextCell * cell;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cell = [[XNGTextCell alloc] initWithFrame:CGRectZero];
+    });
+    cell.textLabel.text = text;
+    [cell layoutIfNeeded]; // this needs to be called only on iOS7
+    // calling this on the cell itself returns (0,0) on iOS 7
+    CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size;
+}
+
+#pragma - mark These methods are here just to place breakpoints
+
+// method called when using auto sizing cells
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+
+    self.textLabel.preferredMaxLayoutWidth = layoutAttributes.size.width;
     UICollectionViewLayoutAttributes *size = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
 
     // computed size can be changed here, but should not be necessary
@@ -125,18 +154,6 @@ const static NSUInteger XNGNumTextCells = 10000;
 - (CGSize)sizeThatFits:(CGSize)targetSize {
     CGSize size = [super sizeThatFits:targetSize];
 
-    return size;
-}
-
-+ (CGSize)sizeForText:(NSString*)text {
-    static XNGTextCell * cell;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        cell = [[XNGTextCell alloc] initWithFrame:CGRectZero];
-    });
-    cell.textLabel.text = text;
-    [cell layoutSubviews];
-    CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size;
 }
 

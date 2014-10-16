@@ -1,3 +1,11 @@
+//
+//  XNGTextImageCollectionViewController.h
+//  AutoSizingExample
+//
+//  Created by Jose Alcalá-Correa on 16/10/14.
+//  Copyright (c) 2014 gskbyte. All rights reserved.
+//
+
 #import "XNGTextImageCollectionViewController.h"
 
 #import "XNGChiquitoIpsum.h"
@@ -5,7 +13,7 @@
 
 #import <objc/runtime.h>
 
-const static NSUInteger XNGNumTextCells = 10000;
+const static NSUInteger XNGNumTextCells = 1000;
 
 @interface XNGTextImageCell : UICollectionViewCell
 
@@ -20,6 +28,7 @@ const static NSUInteger XNGNumTextCells = 10000;
 
 @interface XNGTextImageCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic) BOOL useAutoSizingCells;
 @property (nonatomic) NSMutableArray * datas;
 
 @end
@@ -28,14 +37,14 @@ const static NSUInteger XNGNumTextCells = 10000;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [self.collectionView registerClass:XNGTextImageCell.class
             forCellWithReuseIdentifier:NSStringFromClass(XNGTextImageCell.class)];
     UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout*) self.collectionView.collectionViewLayout;
-    if([flow respondsToSelector:@selector(setEstimatedItemSize:)]) {
-        flow.estimatedItemSize = CGSizeMake(100, 50); // if collectionView:layout:sizeForItemAtIndexPath is implemented, does not do anything
+    self.useAutoSizingCells = [flow respondsToSelector:@selector(setEstimatedItemSize:)];
+    if(self.useAutoSizingCells) {
+        flow.estimatedItemSize = CGSizeMake(300, 100); // if collectionView:layout:sizeForItemAtIndexPath is implemented, does not do anything
     }
-    flow.minimumInteritemSpacing = 2;
-    flow.minimumLineSpacing = 2;
 
     self.datas = [NSMutableArray arrayWithCapacity:XNGNumTextCells];
     for(NSUInteger i=0; i<XNGNumTextCells; ++i) {
@@ -83,15 +92,17 @@ const static NSUInteger XNGNumTextCells = 10000;
     return [XNGTextImageCell sizeForData:data];
 }
 
+// Why do we do this:
+// If collectionView:layout:sizeForItemAtIndexPath is implemented, it will be called at the beginning
+// and we will lose the advantage of using autosizing cells
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    if([UIDevice.currentDevice.systemVersion hasPrefix:@"8"] &&
+    if(self.useAutoSizingCells &&
        aSelector == @selector(collectionView:layout:sizeForItemAtIndexPath:)) {
         return NO;
     }
 
     return [super respondsToSelector:aSelector];
 }
-
 
 @end
 
@@ -106,7 +117,7 @@ const static NSUInteger XNGNumTextCells = 10000;
 
         // content view
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@0);
+            make.left.equalTo(@0); //need to be set so that there are no
             make.top.equalTo(@0);
             make.width.greaterThanOrEqualTo(@150);
             make.width.lessThanOrEqualTo(@280);
@@ -143,34 +154,13 @@ const static NSUInteger XNGNumTextCells = 10000;
     return self;
 }
 
-- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-    UICollectionViewLayoutAttributes *size = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
-
-    // computed size can be changed here, but should not be necessary
-
-    return size;
-}
-
-// called for cells with autolayout
-- (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
-    CGSize size = [super systemLayoutSizeFittingSize:targetSize];
-
-    return size;
-}
-
-// called if no autolayout is used
-- (CGSize)sizeThatFits:(CGSize)targetSize {
-    CGSize size = [super sizeThatFits:targetSize];
-
-    return size;
-}
+#pragma mark - cell configuration
 
 - (void)updateConstraints {
     [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@(self.imageView.image.size.width));
         make.height.equalTo(@(self.imageView.image.size.height));
     }];
-
 
     [super updateConstraints];
 }
@@ -190,8 +180,34 @@ const static NSUInteger XNGNumTextCells = 10000;
         cell = [[XNGTextImageCell alloc] initWithFrame:CGRectZero];
     });
     cell.data = data;
-    [cell layoutSubviews];
+    [cell layoutIfNeeded]; // this needs to be called only on iOS7
+    // calling this on the cell itself returns (0,0) on iOS 7
     CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size;
+}
+
+#pragma - mark These methods are here just so that you see how it works
+
+// method called when using auto sizing cells
+- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+    UICollectionViewLayoutAttributes *size = [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
+
+    // computed size can be changed here, but should not be necessary
+
+    return size;
+}
+
+// called for cells with autolayout
+- (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
+    CGSize size = [super systemLayoutSizeFittingSize:targetSize];
+
+    return size;
+}
+
+// called if no autolayout is used
+- (CGSize)sizeThatFits:(CGSize)targetSize {
+    CGSize size = [super sizeThatFits:targetSize];
+
     return size;
 }
 
