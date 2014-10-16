@@ -5,7 +5,7 @@
 
 #import <objc/runtime.h>
 
-const static NSUInteger XNGNumTextCells = 1000;
+const static NSUInteger XNGNumTextCells = 10000;
 
 @interface XNGTextImageCell : UICollectionViewCell
 
@@ -106,8 +106,10 @@ const static NSUInteger XNGNumTextCells = 1000;
 
         // content view
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@0);
+            make.top.equalTo(@0);
             make.width.greaterThanOrEqualTo(@150);
-            make.width.lessThanOrEqualTo(@300);
+            make.width.lessThanOrEqualTo(@280);
         }];
         self.contentView.backgroundColor = [UIColor yellowColor];
 
@@ -120,7 +122,7 @@ const static NSUInteger XNGNumTextCells = 1000;
 
             make.left.equalTo(@8);
             make.top.equalTo(@(8));
-            make.bottom.lessThanOrEqualTo(@(-8));
+            make.bottom.equalTo(@(-8)).with.priorityLow();
         }];
 
         // text label, dynamic

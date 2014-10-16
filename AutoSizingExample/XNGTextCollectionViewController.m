@@ -85,6 +85,8 @@ const static NSUInteger XNGNumTextCells = 10000;
 
         // content view
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@0);
+            make.top.equalTo(@0);
             make.width.greaterThanOrEqualTo(@50);
             make.width.lessThanOrEqualTo(@120);
         }];
