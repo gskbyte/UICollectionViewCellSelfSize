@@ -15,6 +15,10 @@
 		C04AFD7519ED243600F7979F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C04AFD7319ED243600F7979F /* LaunchScreen.xib */; };
 		C04AFD8119ED243600F7979F /* AutoSizingExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD8019ED243600F7979F /* AutoSizingExampleTests.m */; };
 		C04AFD8C19ED24B500F7979F /* XNGSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04AFD8B19ED24B500F7979F /* XNGSelectionViewController.m */; };
+		C0B3F3D919EFCE29008326A8 /* XNGTextImageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B3F3D819EFCE29008326A8 /* XNGTextImageCollectionViewController.m */; };
+		C0B3F3DF19EFCFD3008326A8 /* green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B3F3DD19EFCFD3008326A8 /* green@2x.png */; };
+		C0B3F3E019EFCFD3008326A8 /* power@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B3F3DE19EFCFD3008326A8 /* power@2x.png */; };
+		C0B3F3E219EFCFE3008326A8 /* lab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B3F3E119EFCFE3008326A8 /* lab@2x.png */; };
 		C0BAC30F19ED29AC00AB8239 /* XNGChiquitoIpsum.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BAC30E19ED29AC00AB8239 /* XNGChiquitoIpsum.m */; };
 		F7C7FB4D7D49D0520A670043 /* libPods-AutoSizingExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A53D1DDA6E7F9F5952614250 /* libPods-AutoSizingExample.a */; };
 /* End PBXBuildFile section */
@@ -47,6 +51,11 @@
 		C04AFD8019ED243600F7979F /* AutoSizingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoSizingExampleTests.m; sourceTree = "<group>"; };
 		C04AFD8A19ED24B500F7979F /* XNGSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNGSelectionViewController.h; sourceTree = "<group>"; };
 		C04AFD8B19ED24B500F7979F /* XNGSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNGSelectionViewController.m; sourceTree = "<group>"; };
+		C0B3F3D719EFCE29008326A8 /* XNGTextImageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNGTextImageCollectionViewController.h; sourceTree = "<group>"; };
+		C0B3F3D819EFCE29008326A8 /* XNGTextImageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNGTextImageCollectionViewController.m; sourceTree = "<group>"; };
+		C0B3F3DD19EFCFD3008326A8 /* green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green@2x.png"; sourceTree = "<group>"; };
+		C0B3F3DE19EFCFD3008326A8 /* power@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power@2x.png"; sourceTree = "<group>"; };
+		C0B3F3E119EFCFE3008326A8 /* lab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lab@2x.png"; sourceTree = "<group>"; };
 		C0BAC30D19ED29AC00AB8239 /* XNGChiquitoIpsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNGChiquitoIpsum.h; sourceTree = "<group>"; };
 		C0BAC30E19ED29AC00AB8239 /* XNGChiquitoIpsum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNGChiquitoIpsum.m; sourceTree = "<group>"; };
 		EF114922D14FFF8431D0B092 /* Pods-AutoSizingExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoSizingExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-AutoSizingExample/Pods-AutoSizingExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +120,7 @@
 		C04AFD6319ED243600F7979F /* AutoSizingExample */ = {
 			isa = PBXGroup;
 			children = (
+				C0B3F3DA19EFCF59008326A8 /* Assets */,
 				C04AFD6819ED243600F7979F /* AppDelegate.h */,
 				C04AFD6919ED243600F7979F /* AppDelegate.m */,
 				C04AFD6E19ED243600F7979F /* Main.storyboard */,
@@ -123,6 +133,8 @@
 				C04AFD6C19ED243600F7979F /* XNGTextCollectionViewController.m */,
 				C0BAC30D19ED29AC00AB8239 /* XNGChiquitoIpsum.h */,
 				C0BAC30E19ED29AC00AB8239 /* XNGChiquitoIpsum.m */,
+				C0B3F3D719EFCE29008326A8 /* XNGTextImageCollectionViewController.h */,
+				C0B3F3D819EFCE29008326A8 /* XNGTextImageCollectionViewController.m */,
 			);
 			path = AutoSizingExample;
 			sourceTree = "<group>";
@@ -151,6 +163,16 @@
 				C04AFD7F19ED243600F7979F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0B3F3DA19EFCF59008326A8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C0B3F3E119EFCFE3008326A8 /* lab@2x.png */,
+				C0B3F3DD19EFCFD3008326A8 /* green@2x.png */,
+				C0B3F3DE19EFCFD3008326A8 /* power@2x.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +258,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C04AFD7019ED243600F7979F /* Main.storyboard in Resources */,
+				C0B3F3DF19EFCFD3008326A8 /* green@2x.png in Resources */,
+				C0B3F3E019EFCFD3008326A8 /* power@2x.png in Resources */,
+				C0B3F3E219EFCFE3008326A8 /* lab@2x.png in Resources */,
 				C04AFD7519ED243600F7979F /* LaunchScreen.xib in Resources */,
 				C04AFD7219ED243600F7979F /* Images.xcassets in Resources */,
 			);
@@ -293,6 +318,7 @@
 				C04AFD8C19ED24B500F7979F /* XNGSelectionViewController.m in Sources */,
 				C04AFD6A19ED243600F7979F /* AppDelegate.m in Sources */,
 				C04AFD6719ED243600F7979F /* main.m in Sources */,
+				C0B3F3D919EFCE29008326A8 /* XNGTextImageCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

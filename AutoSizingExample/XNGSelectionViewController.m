@@ -14,12 +14,8 @@
 
 @implementation XNGSelectionViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -32,8 +28,9 @@
         case 0:
             cell.textLabel.text = @"Text";
             break;
-
-
+        case 1:
+            cell.textLabel.text = @"Text and image";
+            break;
         default:
             break;
     }
@@ -46,7 +43,8 @@
         case 0:
             [self performSegueWithIdentifier:@"text" sender:self];
             break;
-
+        case 1:
+            [self performSegueWithIdentifier:@"text_image" sender:self];
         default:
             break;
     }
